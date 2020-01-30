@@ -1,0 +1,17 @@
+<component name="ArtifactManager">
+  <artifact type="exploded-war" name="AddressBook:war exploded">
+    <output-path>$PROJECT_DIR$/out/artifacts/AddressBook_war_exploded</output-path>
+    <root id="root">
+      <element id="javaee-facet-resources" facet="AddressBook/web/Web" />
+      <element id="directory" name="WEB-INF">
+        <element id="directory" name="classes">
+          <element id="module-output" name="AddressBook" />
+        </element>
+        <element id="directory" name="lib">
+          <element id="library" level="project" name="Struts 2" />
+          <element id="file-copy" path="C:/Program Files (x86)/MySQL/Connector J 8.0/mysql-connector-java-8.0.17.jar" />
+        </element>
+      </element>
+    </root>
+  </artifact>
+</component>
