@@ -2,13 +2,12 @@ package cn.wangyusheng.addressbook.main.dao;
 
 import cn.wangyusheng.addressbook.main.vo.Contact;
 
-import java.sql.Connection;
-import java.sql.DriverManager;
-import java.sql.SQLException;
+import java.sql.*;
 import java.util.ArrayList;
 
 public class MysqlDao {
     private Connection connection;
+    private String user_name = "admin";
     public MysqlDao(){
         try {
             Class.forName("com.mysql.cj.jdbc.Driver");
@@ -33,9 +32,29 @@ public class MysqlDao {
 
     public Contact[] read(){
         ArrayList<Contact> contacts = new ArrayList<>();
+        try {
+            PreparedStatement ps = connection.prepareStatement(
+                    "SELECT * from address_book."+user_name);
+            ResultSet rs = ps.executeQuery();
+            Contact c_iterator = new Contact();
+            while (rs.next())
+            {
+                c_iterator.setID(rs.getInt(1));
+                c_iterator.setName(rs.getString(2));
+                c_iterator.setSex(rs.getString(3));
+                c_iterator.setPhone_number(rs.getString(4));
+                c_iterator.setAddress(rs.getString(5));
+                c_iterator.setBirthday(rs.getDate(6));
 
-        Contact[] contacts_list = new Contact[contacts.size()];
-        return contacts.toArray(contacts_list);
+                contacts.add(c_iterator);
+            }
+            Contact[] contacts_list = new Contact[contacts.size()];
+            contacts.toArray(contacts_list);
+            return contacts_list;
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return null;
     }
 
     public Contact[] fuzzyRead(String argv[]){
