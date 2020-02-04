@@ -9,5 +9,6 @@ public class AddressBookDebug {
         MysqlDao mysqlDao = new MysqlDao();
         Contact[] c = mysqlDao.read();
         System.out.println(c[0].getName());
+        System.out.println(c[1].getName());
     }
 }

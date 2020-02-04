@@ -33,12 +33,13 @@ public class MysqlDao {
     public Contact[] read(){
         ArrayList<Contact> contacts = new ArrayList<>();
         try {
-            PreparedStatement ps = connection.prepareStatement(
+                PreparedStatement ps = connection.prepareStatement(
                     "SELECT * from address_book."+user_name);
-            ResultSet rs = ps.executeQuery();
-            Contact c_iterator = new Contact();
+                ResultSet rs = ps.executeQuery();
             while (rs.next())
             {
+                Contact c_iterator = new Contact();
+
                 c_iterator.setID(rs.getInt(1));
                 c_iterator.setName(rs.getString(2));
                 c_iterator.setSex(rs.getString(3));
@@ -67,6 +68,11 @@ public class MysqlDao {
     public boolean add(Contact contact){
 
         return false;
+    }
+
+    public boolean delete(int ID){
+        System.out.println("删除ID:"+ID);
+        return true;
     }
 
 
