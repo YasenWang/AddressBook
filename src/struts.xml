@@ -8,7 +8,11 @@
     <package name="default" namespace="/" extends="struts-default">
         <action name="deleteContact" class="cn.wangyusheng.addressbook.main.action.DeleteContactAction"
                 method="deleteContact">
-            <allowed-methods>deleteContact</allowed-methods>
+            <!--TODO: Add deleteContact return-->
+        </action>
+        <action name="readContacts" class="cn.wangyusheng.addressbook.main.action.ReadContactsAction"
+                method="readContacts">
+            <result name="success" type="stream">result</result>
         </action>
     </package>
 </struts>

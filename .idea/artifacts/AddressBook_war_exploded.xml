@@ -10,6 +10,7 @@
         <element id="directory" name="lib">
           <element id="library" level="project" name="Struts 2" />
           <element id="file-copy" path="C:/Program Files (x86)/MySQL/Connector J 8.0/mysql-connector-java-8.0.17.jar" />
+          <element id="file-copy" path="E:/ProgramData/JavaThirdParty/Gson/gson-2.8.6.jar" />
         </element>
       </element>
     </root>
