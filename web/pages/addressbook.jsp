@@ -13,43 +13,29 @@
 <body>
 <script src="${pageContext.request.contextPath}/js/jquery-3.4.1.js"></script>
 <script>
-    //删除联系人
     deleteContact = function (ID_row){
         $.post("deleteContact",
             {
                 contact_ID:1
             },
-            function (data,status) {
-                alert("Data: " + data + "\nStatus: " + status);
+            function (data) {
+                alert(data)
             });
     }
-    //模糊查找联系人
-    searchContacts = function () {
-        var key_word = document.getElementById("search_input").innerText;
-
-    }
-    //读取联系人
-    readContacts = function () {
-
-    }
-
-    window.onload = function () { readContacts(); }
-
 
 </script>
 
 
-<div id="head">
-    <h1 style="text-align: center">通讯录管理系统</h1>
-</div>
+    <div id="head">
+        <h1 style="text-align: center">通讯录管理系统</h1>
+    </div>
 
-<div id="body" align="center">
-    <label>
-        <input id="search_input" value="" placeholder="请输入关键字">
-        <input id="bth_search" type="button" value="搜索" onclick=searchContacts()>
-    </label>
+    <div id="body">
+        <input value="删除" type="button" onclick="deleteContact(11)">
 
-</div>
+        
+
+    </div>
 
 
 

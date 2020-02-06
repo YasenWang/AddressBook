@@ -10,7 +10,7 @@ public class Contact {
     private String address;
     private Date birthday;
 
-    Contact(){}
+    public Contact(){}
 
     public String getName() {
         return name;
