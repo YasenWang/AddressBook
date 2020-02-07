@@ -14,5 +14,9 @@
                 method="readContacts">
             <result name="success" type="stream">result</result>
         </action>
+        <action name="findContacts" class="cn.wangyusheng.addressbook.main.action.findContactsAction"
+                method="findContacts">
+            <result name="success" type="stream">result</result>
+        </action>
     </package>
 </struts>

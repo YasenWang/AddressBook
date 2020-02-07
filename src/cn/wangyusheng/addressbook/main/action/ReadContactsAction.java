@@ -6,9 +6,7 @@ import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 
 import java.io.ByteArrayInputStream;
-import java.io.IOException;
 import java.io.InputStream;
-import java.io.UnsupportedEncodingException;
 import java.nio.charset.StandardCharsets;
 
 public class ReadContactsAction {
@@ -20,7 +18,6 @@ public class ReadContactsAction {
                 .create();
         Contact[] contacts = new MysqlDao().read();
         String buf = gson.toJson(contacts,Contact[].class);
-        System.out.println(buf);
         result = new ByteArrayInputStream(buf.getBytes(StandardCharsets.UTF_8));
         return "success";
     }
