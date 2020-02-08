@@ -17,24 +17,24 @@
     var req;
     findContacts = function() {
         var col_index = document.getElementById("slt_column").selectedIndex;
-        var keyword = document.getElementById("te_keyword").innerText;
-        var col_name
+        var keyword = document.getElementById("te_keyword").value;
+        var col_name;
         switch (col_index) {
             case 0:col_name = "姓名";break;
             case 1:col_name = "地址";break;
         }
         req = new XMLHttpRequest();
         req.onreadystatechange = showContacts;
-        var url = "findContacts" + "/?"
-                + "col=" + col_name + "&"
+        var url = "findContacts" + "?"
+                + "col=" + col_index + "&"
                 + "keyword=" + keyword;
         req.open("get",url,true);
         req.send();
-    }
+    };
 
     updateContact = function(ID_row) {
         alert("TODO:update row" + ID_row);
-    }
+    };
 
     readContacts = function () {
         //Ajax
@@ -42,17 +42,13 @@
         req.onreadystatechange = showContacts;
         req.open("get","readContacts",true);
         req.send(null);
-    }
+    };
 
     deleteContact = function (ID_row) {
-        $.post("deleteContact",
-            {
-                contact_ID:1
-            },
-            function (data) {
-                alert(data)
-            });
-    }
+        if (confirm("确定删除该联系人？\nID:"+ID_row)) {
+
+        }
+    };
     /*============private function============*/
     showContacts = function () {
         if (req.readyState===4 && req.status===200){
@@ -60,7 +56,7 @@
             var contacts = JSON.parse(json_str);
             setTable(contacts);
         }
-    }
+    };
 
     setTable = function (contacts) {
         var tb_contacts = document.getElementById("contacts_list");
@@ -93,7 +89,7 @@
                 "<input type='button' value='删除' " +
                 "onclick=deleteContact(this.parentNode.parentNode.cells[6].innerText)>";
         }
-    }
+    };
 
     window.onload = readContacts;
 </script>
