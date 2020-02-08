@@ -11,6 +11,7 @@
 </head>
 
 <body>
+<link type="text/css" rel="stylesheet" href="${pageContext.request.contextPath}/css/yasen-style-table.css"/>
 <script src="${pageContext.request.contextPath}/js/jquery-3.4.1.js"></script>
 <script src="${pageContext.request.contextPath}/js/json2.js"></script>
 <script>
@@ -46,7 +47,16 @@
 
     deleteContact = function (ID_row) {
         if (confirm("确定删除该联系人？\nID:"+ID_row)) {
-
+            req = new XMLHttpRequest();
+            req.onreadystatechange = function () {
+                if (req.readyState===4 && req.status===200){
+                    alert("删除成功");
+                    readContacts();
+                }
+            };
+            var url = "deleteContact"+"?delete_ID="+ID_row;
+            req.open("get",url,true);
+            req.send();
         }
     };
     /*============private function============*/
@@ -100,7 +110,7 @@
     </div>
 
     <div id="body">
-        <label>
+        <label style="margin-left: 5%">
             <select id="slt_column" style="height: 30px">
                 <option>姓名</option>
                 <option>地址</option>
@@ -111,7 +121,7 @@
                    style="height: 30px">
         </label>
 
-        <table id="contacts_list" width="800" style="margin-left: auto;margin-right: auto">
+        <table id="contacts_list" width="90%" style="padding-top: 10px;margin-left: auto;margin-right: auto">
             <thead>
             <tr>
                 <th>序号</th>
@@ -127,5 +137,6 @@
             <tbody></tbody>
         </table>
     </div>
+
 </body>
 </html>

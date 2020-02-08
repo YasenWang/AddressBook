@@ -69,7 +69,6 @@ public class MysqlDao {
         }
         argv[1] = "%"+argv[1]+"%";
         try {
-            System.out.println(argv[1]);
             PreparedStatement ps = connection.prepareStatement(
               "SELECT * from address_book."+user_name
               + " WHERE " + mysql_column+ " like ?;");
@@ -99,9 +98,18 @@ public class MysqlDao {
         return false;
     }
 
-    public boolean delete(int ID){
-        System.out.println("删除ID:"+ID);
-        return true;
+    public boolean delete(String ID){
+        int result = 0;
+        try {
+            PreparedStatement ps = connection.prepareStatement(
+                    "delete from  address_book."+user_name
+            +" where ID = ?");
+            ps.setString(1,ID);
+            result = ps.executeUpdate();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return result>0;
     }
 
 

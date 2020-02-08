@@ -1,23 +1,27 @@
 package cn.wangyusheng.addressbook.main.action;
 
-import com.opensymphony.xwork2.ActionSupport;
-import org.apache.struts2.ServletActionContext;
+import cn.wangyusheng.addressbook.main.dao.MysqlDao;
+import org.apache.struts2.interceptor.ServletRequestAware;
 
-import java.io.IOException;
+import javax.servlet.http.HttpServletRequest;
 
-public class DeleteContactAction extends ActionSupport {
+
+public class DeleteContactAction implements ServletRequestAware {
+
+    private HttpServletRequest request;
 
     public String deleteContact(){
-        ServletActionContext.getResponse().setCharacterEncoding("utf-8");
-        String ID = ServletActionContext.getRequest().getParameter("contact_ID");
-
-        try {
-            ServletActionContext.getResponse().getWriter().write("{a:1}");
-        } catch (IOException e) {
-            e.printStackTrace();
+        String delete_ID = request.getParameter("delete_ID");
+        boolean result = new MysqlDao().delete(delete_ID);
+        if (result){
+            return "success";
+        } else {
+            return "error";
         }
-        return SUCCESS;
     }
 
-
+    @Override
+    public void setServletRequest(HttpServletRequest httpServletRequest) {
+        this.request = httpServletRequest;
+    }
 }
